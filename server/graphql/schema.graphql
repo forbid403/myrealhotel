@@ -1,0 +1,8 @@
+
+type Hotel {
+    name: String!
+}
+type Query {
+    hotels(limit: Int, rating: Float): [Hotel]!
+    
+}
