@@ -1,6 +1,6 @@
 import React from 'react'
 import Filter from '../components/Filter'
-import HotelLists from '../components/HotelLists'
+import Hotel from '../components/Hotel'
 import Recent from '../components/Recent'
 import styled, { createGlobalStyle } from 'styled-components'
 
@@ -35,9 +35,12 @@ const Row = styled.div`
     display : flex;
     flex-direction: row;
     margin-bottom : 1%;
-    width : 100%;
     background-color : white;
     height : ${props => props.height};
+`;
+
+const HotelLists = styled.div`
+    width : 100%;
 `;
 
 export default () => {
@@ -51,7 +54,6 @@ export default () => {
                         <Row height={"100%"}>
                             <Filter />
                         </Row>
-                        
                     </Column>
 
                     <Column width={"80%"}>
@@ -59,7 +61,9 @@ export default () => {
                             <Recent />
                         </Row>
                         <Row height={"90%"}>
-                            <HotelLists />
+                            <HotelLists>
+                                <Hotel></Hotel>
+                            </HotelLists>
                         </Row>
                     </Column>
 
