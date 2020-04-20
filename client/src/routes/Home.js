@@ -1,7 +1,7 @@
 import React from 'react'
-
+import {Link} from 'react-router-dom'
 export default () =>{
     return(
-        <div>HOME</div>
+        <Link to ="/hotels">To Hotel Lists</Link>
     )
 }
