@@ -41,7 +41,8 @@ export default ({info}) => {
                 <HotelInfo>
                     <Labels>{info.name}</Labels>
                     <Labels>{info.freeServices}</Labels>
-                    <Labels>{info.rate}</Labels>
+                    <Labels>{info.rate}성급 호텔</Labels>
+                    <Labels>가격~</Labels>
                 </HotelInfo>
             </Column>
         </Container>

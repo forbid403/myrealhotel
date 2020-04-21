@@ -4,7 +4,7 @@ import Filter from '../components/Filter'
 import Hotel from '../components/Hotel'
 import Recent from '../components/Recent'
 import styled, { createGlobalStyle } from 'styled-components'
-import {gql} from 'apollo-boost'
+import { gql } from 'apollo-boost'
 
 const GET_HOTELS = gql`
     {
@@ -57,7 +57,7 @@ const HotelLists = styled.div`
 `;
 
 export default () => {
-    const {loading, data} = useQuery(GET_HOTELS);
+    const { loading, error, data, refetch } = useQuery(GET_HOTELS);
     console.log(loading, data);
     return (
         <React.Fragment>
@@ -77,14 +77,12 @@ export default () => {
                         </Row>
                         <Row height={"90%"}>
                             <HotelLists>
-                                {loading? "loading...":
-                                    data?.hotels?.map(hotel =>
-                                    <Hotel
-                                    info={hotel}
-                                    />
-                                    )
-                                }
-                                
+                            {
+                                error ? <button onClick={() => refetch()}>retry</button> :
+                                    loading ? "loading..." :
+                                        data?.hotels?.map(hotel =>
+                                            <Hotel info={hotel} />)
+                            }
                             </HotelLists>
                         </Row>
                     </Column>
