@@ -1,8 +1,21 @@
 import React from 'react'
+import { useQuery } from "@apollo/react-hooks";
 import Filter from '../components/Filter'
 import Hotel from '../components/Hotel'
 import Recent from '../components/Recent'
 import styled, { createGlobalStyle } from 'styled-components'
+import {gql} from 'apollo-boost'
+
+const GET_HOTELS = gql`
+    {
+        hotels{
+            name
+            freeServices
+            rate
+            imageUrl
+        }
+    }
+`;
 
 const GlobalStyle = createGlobalStyle`
 body{
@@ -44,6 +57,8 @@ const HotelLists = styled.div`
 `;
 
 export default () => {
+    const {loading, data} = useQuery(GET_HOTELS);
+    console.log(loading, data);
     return (
         <React.Fragment>
             <GlobalStyle />
@@ -62,7 +77,14 @@ export default () => {
                         </Row>
                         <Row height={"90%"}>
                             <HotelLists>
-                                <Hotel></Hotel>
+                                {loading? "loading...":
+                                    data?.hotels?.map(hotel =>
+                                    <Hotel
+                                    info={hotel}
+                                    />
+                                    )
+                                }
+                                
                             </HotelLists>
                         </Row>
                     </Column>

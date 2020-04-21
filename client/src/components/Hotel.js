@@ -15,7 +15,8 @@ const Column = styled.div`
 const HotelImage = styled.div`
     width : 100%;
     height : 100%;
-    background-color : yellowgreen;
+    background-image : url(${props => props.img});
+    background-size : cover;
 `;
 
 const HotelInfo = styled.div`
@@ -30,17 +31,17 @@ const HotelInfo = styled.div`
 const Labels = styled.p`
 `;
 
-export default ()=>{
-    return(
+export default ({info}) => {
+    return (
         <Container>
             <Column>
-                <HotelImage/>
+                <HotelImage img={info.imageUrl}/>
             </Column>
             <Column>
                 <HotelInfo>
-                    <Labels>Hotel Name</Labels>
-                    <Labels>Facilities</Labels>
-                    <Labels>Rank</Labels>
+                    <Labels>{info.name}</Labels>
+                    <Labels>{info.freeServices}</Labels>
+                    <Labels>{info.rate}</Labels>
                 </HotelInfo>
             </Column>
         </Container>

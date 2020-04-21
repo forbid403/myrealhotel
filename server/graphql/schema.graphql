@@ -1,8 +1,13 @@
 
 type Hotel {
     name: String!
+    freeServices: [String]!
+    rate: Int!
+    price: Int
+    reviewScore: Float!
+    totalReviewCount: Int!
+    imageUrl: String!
 }
 type Query {
-    hotels(limit: Int, rating: Float): [Hotel]!
-    
+    hotels: [Hotel]!
 }
