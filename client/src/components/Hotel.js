@@ -5,7 +5,7 @@ const Container = styled.div`
     height : 250px;
     width : 75%;
     display: flex;
-    margin : 5% 5% 5% 5%;
+    margin : 3% 3% 3% 3%;
 `;
 
 const Column = styled.div`

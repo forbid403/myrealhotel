@@ -56,6 +56,8 @@ const Row = styled.div`
 
 const HotelLists = styled.div`
     width : 100%;
+    height : 90%;
+    overflow: scroll;
     align-items: center;
     display: flex;
     flex-direction: column;
