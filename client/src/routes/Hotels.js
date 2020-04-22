@@ -13,6 +13,8 @@ const GET_HOTELS = gql`
             freeServices
             rate
             imageUrl
+            totalReviewCount
+            reviewScore
         }
     }
 `;
@@ -54,6 +56,9 @@ const Row = styled.div`
 
 const HotelLists = styled.div`
     width : 100%;
+    align-items: center;
+    display: flex;
+    flex-direction: column;
 `;
 
 export default () => {
@@ -63,7 +68,7 @@ export default () => {
         <React.Fragment>
             <GlobalStyle />
             <Root>
-                <Header>HEADER</Header>
+                {/* <Header>HEADER</Header> */}
                 <Container>
                     <Column width={"20%"}>
                         <Row height={"100%"}>
@@ -75,7 +80,6 @@ export default () => {
                         <Row height={"10%"}>
                             <Recent />
                         </Row>
-                        <Row height={"90%"}>
                             <HotelLists>
                             {
                                 error ? <button onClick={() => refetch()}>retry</button> :
@@ -84,7 +88,6 @@ export default () => {
                                             <Hotel info={hotel} />)
                             }
                             </HotelLists>
-                        </Row>
                     </Column>
 
                 </Container>
