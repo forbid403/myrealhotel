@@ -9,7 +9,16 @@ export const RecentProvider = ({ children }) => {
   const [clickedHotels, setHotel] = useState([]);
 
   const pushHotels = (name) => {
-    setHotel([...clickedHotels, name]);
+    
+    if (clickedHotels.length >= 5) {
+      clickedHotels.shift();
+    }
+
+    let retArr = clickedHotels.filter((hotel)=>{
+      return hotel !== name;
+    });
+
+    setHotel([...retArr, name]);
   }
 
   const value = {
