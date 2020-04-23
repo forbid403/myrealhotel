@@ -1,6 +1,6 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import styled from 'styled-components'
-
+import RecentContext from './RecentContext'
 const Container = styled.div`
     display : flex;
     width : 100%;
@@ -12,13 +12,12 @@ const ClickedHotel = styled.div`
     padding: 10px 10px 10px 10px;
     margin-left: 10px;    
 `;
-
-let arr = ["temp1", "temp2"];
-
 export default () => {
+     const { clickedHotels } = useContext(RecentContext);
+    
     return (
         <Container>
-            {arr.map(hotel => <ClickedHotel>{hotel}</ClickedHotel>)}
+            {clickedHotels.map(hotel => <ClickedHotel key={Math.random()}>{hotel}</ClickedHotel>)}
         </Container>
     )
 }

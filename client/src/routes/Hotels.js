@@ -9,6 +9,7 @@ import { gql } from 'apollo-boost'
 const GET_HOTELS = gql`
     {
         hotels{
+            id
             name
             freeServices
             rate
@@ -65,7 +66,6 @@ const HotelLists = styled.div`
 
 export default () => {
     const { loading, error, data, refetch } = useQuery(GET_HOTELS);
-    console.log(loading, data);
     return (
         <React.Fragment>
             <GlobalStyle />
@@ -87,7 +87,7 @@ export default () => {
                                 error ? <button onClick={() => refetch()}>retry</button> :
                                     loading ? "loading..." :
                                         data?.hotels?.map(hotel =>
-                                            <Hotel info={hotel} />)
+                                            <Hotel key={hotel.id} info={hotel} />)
                             }
                             </HotelLists>
                     </Column>

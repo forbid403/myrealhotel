@@ -1,5 +1,6 @@
-import React from 'react'
+import React, {useContext} from 'react'
 import styled from 'styled-components'
+import RecentContext from './RecentContext';
 
 const Container = styled.div`
     height : 250px;
@@ -93,8 +94,16 @@ const Row = styled.div`
 `;
 
 export default ({ info }) => {
+
+    const { pushHotels, clickedHotels } = useContext(RecentContext);
+
+    const handleClickHotel = (hotelName, e) => {
+        alert(`${hotelName} 을 조회하였습니다.`)
+        pushHotels(hotelName)
+    }
+
     return (
-        <Container>
+        <Container onClick={handleClickHotel.bind(this, info.name)}>
             <Column>
                 <HotelImage img={info.imageUrl} />
             </Column>
@@ -109,7 +118,7 @@ export default ({ info }) => {
                     </Row>
 
                     <Facilities>
-                        {info.freeServices.map(service => <Service>{service}</Service>)}
+                        {info.freeServices.map((service, idx) => <Service key={idx}>{service}</Service>)}
                     </Facilities>
                     <p>{info.rate}성급 호텔</p>
                 </HotelInfo>

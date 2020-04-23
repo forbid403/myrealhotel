@@ -7,6 +7,7 @@ type Hotel {
     reviewScore: Float!
     totalReviewCount: Int!
     imageUrl: String!
+    id: Int!
 }
 type Query {
     hotels: [Hotel]!
