@@ -9,6 +9,12 @@ type Hotel {
     imageUrl: String!
     id: Int!
 }
+
+type Price {
+    id: String
+    price: Int
+}
 type Query {
     hotels: [Hotel]!
+    prices(id:String): Price!
 }

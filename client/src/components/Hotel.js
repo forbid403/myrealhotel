@@ -1,6 +1,7 @@
 import React, {useContext} from 'react'
 import styled from 'styled-components'
 import RecentContext from './RecentContext';
+import { gql } from 'apollo-boost';
 
 const Container = styled.div`
     height : 250px;
@@ -93,9 +94,10 @@ const Row = styled.div`
     align-items : center;
 `;
 
+
 export default ({ info }) => {
 
-    const { pushHotels, clickedHotels } = useContext(RecentContext);
+    const { pushHotels } = useContext(RecentContext);
 
     const handleClickHotel = (hotelName, e) => {
         alert(`${hotelName} 을 조회하였습니다.`)
@@ -125,7 +127,7 @@ export default ({ info }) => {
 
                 <PriceInfo>
                     <Price>
-                        hello원~
+
                     </Price>
                 </PriceInfo>
             </Column2>

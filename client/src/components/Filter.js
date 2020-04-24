@@ -1,7 +1,6 @@
 import React, { useState } from 'react'
 import styled from 'styled-components'
 import { Range } from 'rc-slider';
-
 import 'rc-slider/assets/index.css';
 
 

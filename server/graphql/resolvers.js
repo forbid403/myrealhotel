@@ -1,8 +1,9 @@
-import {getHotels} from './db'
+import {getHotels, getPrices} from './db'
 
 const resolvers = {
     Query: {
-        hotels: (_, {}) => getHotels()
+        hotels: (_, {}) => getHotels(),
+        prices: (_, {id}) => getPrices(id)
     }
 }
 

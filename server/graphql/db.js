@@ -1,3 +1,6 @@
+import fetch from "node-fetch"
+
+const API_URL = "https://x0ofq07ykl.execute-api.ap-northeast-2.amazonaws.com/dev";
 
 const hotelLists =  [
    {
@@ -239,4 +242,18 @@ const hotelLists =  [
    }
 ];
 
-export const getHotels =()=>{return hotelLists};
+
+export const getPrices = async(id)=>{
+   let REQ_URL = API_URL;
+   REQ_URL = REQ_URL + `/hotel-prices?ids=${id}`;
+   
+   const fetched = await fetch(REQ_URL).then(res => res.json());
+
+   return {id, price : fetched[id]}
+}
+
+export const getHotels =()=>{
+   //let REQ_URL = API_URL;
+   return hotelLists;
+};
+
