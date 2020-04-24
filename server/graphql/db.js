@@ -249,7 +249,7 @@ export const getPrices = async(id)=>{
    
    const fetched = await fetch(REQ_URL).then(res => res.json());
 
-   return {id, price : fetched[id]}
+   return {id : parseInt(id), price : fetched[id]}
 }
 
 export const getHotels =()=>{

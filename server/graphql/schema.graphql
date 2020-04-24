@@ -11,10 +11,10 @@ type Hotel {
 }
 
 type Price {
-    id: String
+    id: Int
     price: Int
 }
 type Query {
     hotels: [Hotel]!
-    prices(id:String): Price!
+    prices(id:Int): Price!
 }

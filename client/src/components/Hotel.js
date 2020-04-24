@@ -1,7 +1,8 @@
-import React, {useContext} from 'react'
+import React, { useContext, useState } from 'react'
 import styled from 'styled-components'
 import RecentContext from './RecentContext';
 import { gql } from 'apollo-boost';
+import { useQuery } from '@apollo/react-hooks';
 
 const Container = styled.div`
     height : 250px;
@@ -94,14 +95,33 @@ const Row = styled.div`
     align-items : center;
 `;
 
+const GET_PRICE = gql`
+    query prices($id: Int!){
+        prices(id: $id){
+            price
+        }
+    }
+`;
 
 export default ({ info }) => {
-
     const { pushHotels } = useContext(RecentContext);
+    const { loading, error, data, refetch } = useQuery(GET_PRICE, {variables : {"id" : info.id}});
+    const [retryCnt, setRetryCnt] = useState(1);
+    const [tempError, setError] = useState(false);
 
     const handleClickHotel = (hotelName, e) => {
         alert(`${hotelName} 을 조회하였습니다.`)
         pushHotels(hotelName)
+    }
+
+    const handleErrorBtnClicked = (e) =>{
+        e.stopPropagation();
+        if(retryCnt >= 3) {
+            setError(true)
+            return;
+        }
+        setRetryCnt(retryCnt+1);
+        refetch();
     }
 
     return (
@@ -127,7 +147,11 @@ export default ({ info }) => {
 
                 <PriceInfo>
                     <Price>
-
+                        {error ?
+                            tempError ? <div>일시적 오류</div> :
+                                <button onClickCapture={handleErrorBtnClicked.bind(this)}>retry</button>:
+                                loading ? "loading..." : `${data.prices.price} 원~`
+                        }
                     </Price>
                 </PriceInfo>
             </Column2>
