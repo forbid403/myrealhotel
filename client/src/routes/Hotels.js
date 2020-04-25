@@ -7,8 +7,8 @@ import styled, { createGlobalStyle } from 'styled-components'
 import { gql } from 'apollo-boost'
 
 const GET_HOTELS = gql`
-    {
-        hotels{
+    query hotels($minPrice: Int, $maxPrice: Int, $freeServices: [String], $reviewScore: Int){
+        hotels(minPrice: $minPrice, maxPrice: $maxPrice, freeServices: $freeServices, reviewScore: $reviewScore){
             id
             name
             freeServices
@@ -19,7 +19,6 @@ const GET_HOTELS = gql`
         }
     }
 `;
-
 const GlobalStyle = createGlobalStyle`
 body{
   padding:0;
@@ -66,6 +65,13 @@ const HotelLists = styled.div`
 
 export default () => {
     const { loading, error, data, refetch } = useQuery(GET_HOTELS);
+    console.log(data?.hotels)
+    const callBack = () => {
+        console.log("callBack")
+        // const ret = useQuery(GET_HOTELS, {variables :{
+
+        // }});
+    }
     return (
         <React.Fragment>
             <GlobalStyle />
@@ -74,7 +80,7 @@ export default () => {
                 <Container>
                     <Column width={"20%"}>
                         <Row height={"100%"}>
-                            <Filter />
+                            <Filter callBack={callBack} />
                         </Row>
                     </Column>
 
@@ -82,14 +88,14 @@ export default () => {
                         <Row height={"10%"}>
                             <Recent />
                         </Row>
-                            <HotelLists>
+                        <HotelLists>
                             {
                                 error ? <button onClick={() => refetch()}>retry</button> :
                                     loading ? "loading..." :
                                         data?.hotels?.map(hotel =>
                                             <Hotel key={hotel.id} info={hotel} />)
                             }
-                            </HotelLists>
+                        </HotelLists>
                     </Column>
 
                 </Container>

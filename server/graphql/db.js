@@ -252,7 +252,7 @@ export const getPrices = async(id)=>{
    return {id : parseInt(id), price : fetched[id]}
 }
 
-export const getHotels =()=>{
+export const getHotels = (minPrice, maxPrice, freeServices, reviewScore)=>{
    //let REQ_URL = API_URL;
    return hotelLists;
 };

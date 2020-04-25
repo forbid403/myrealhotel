@@ -15,6 +15,6 @@ type Price {
     price: Int
 }
 type Query {
-    hotels: [Hotel]!
+    hotels(minPrice: Int, maxPrice: Int, freeServices: [String], reviewScore: Int): [Hotel]!
     prices(id:Int): Price!
 }

@@ -3,6 +3,7 @@ import styled from 'styled-components'
 import RecentContext from './RecentContext';
 import { gql } from 'apollo-boost';
 import { useQuery } from '@apollo/react-hooks';
+import Filter from '../components/Filter'
 
 const Container = styled.div`
     height : 250px;
@@ -155,6 +156,6 @@ export default ({ info }) => {
                     </Price>
                 </PriceInfo>
             </Column2>
-        </Container>
+        </Container>        
     )
 }
