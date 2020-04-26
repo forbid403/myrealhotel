@@ -9,7 +9,7 @@
 
 ---
 
-##Main Page
+## Main Page
 <img width="1440" alt="main" src="https://user-images.githubusercontent.com/41617388/80303088-fc1ad200-87e8-11ea-8b1e-6e6bb4444e18.png">
 - 호텔 리스트로 링크, 마우스 호버 시 색깔 변경
   
