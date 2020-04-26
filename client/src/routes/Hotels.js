@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {useState} from 'react'
 import { useQuery } from "@apollo/react-hooks";
 import Filter from '../components/Filter'
 import Hotel from '../components/Hotel'
@@ -62,16 +62,15 @@ const HotelLists = styled.div`
     display: flex;
     flex-direction: column;
 `;
-
 export default () => {
-    const { loading, error, data, refetch } = useQuery(GET_HOTELS);
-    console.log(data?.hotels)
-    const callBack = () => {
-        console.log("callBack")
-        // const ret = useQuery(GET_HOTELS, {variables :{
-
-        // }});
-    }
+    const [minPrice, setMinPrice] = useState(0);
+    const [maxPrice, setMaxPrice] = useState(1000000);
+    const [maxReview, setMaxReview] = useState(10);
+    const [freeServices, setFreeServices] = useState([]);
+    const { loading, error, data, refetch } = useQuery(GET_HOTELS, {
+        variables : { "minPrice" : minPrice, "maxPrice" : maxPrice, "reviewScore": maxReview, "freeServices" : freeServices}
+    });
+    
     return (
         <React.Fragment>
             <GlobalStyle />
@@ -80,7 +79,12 @@ export default () => {
                 <Container>
                     <Column width={"20%"}>
                         <Row height={"100%"}>
-                            <Filter callBack={callBack} />
+                            <Filter 
+                            setMinPrice={setMinPrice}
+                            setMaxPrice={setMaxPrice}
+                            setMaxReview={setMaxReview}
+                            setFreeServices={setFreeServices}
+                            />
                         </Row>
                     </Column>
 

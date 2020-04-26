@@ -18,28 +18,40 @@ const SliderContainer = styled.div`
 
 const priceMarks = {
     0: 0,
-    100: {
+    1000000: {
         style: { transform: 'translateX(-100%)' },
         label: '1,000,000+',
     }
 };
 const reviewMarks = {
     0: 0,
-    100: 5
+    10 : 10
 }
 const SliderStyle = [{ borderColor: 'darkblue', backgroundColor: 'darkblue' }, { borderColor: 'darkblue', backgroundColor: 'darkblue' }]
+const checkBox = [{isChecked:false, value:"FREE-WIFI"}, {isChecked:false, value:"FREE-PARKING"}, {isChecked:false, value:"FREE-AIRPORT-PICKUP"}];
 
-
-export default () => {
-    const [price, setPrice] = useState([0, 100]);
-    const [review, setReview] = useState([0, 100]);
+export default (props) => {
+    const [price, setPrice] = useState([0, 1000000]);
+    const [review, setReview] = useState([0, 10]);
 
     const onPriceChange = (val) => {
-        setPrice(val)
+        setPrice(val);
+        props.setMinPrice(price[0]);
+        props.setMaxPrice(price[1]);
     }
 
     const onReviewChange = (val) => {
-        setReview(val)
+        setReview(val);
+        props.setMaxReview(review[1]);
+    }
+
+    const onFreeServicesCheck = (e) =>{
+        const id = e.target.id;
+        checkBox[id].isChecked === true? checkBox[id].isChecked = false : checkBox[id].isChecked = true;
+        
+        let setCheckbox = [];
+        checkBox.map(c => {if(c.isChecked===true)setCheckbox.push(c.value); console.log(c.value, c.isChecked)});
+        props.setFreeServices(setCheckbox);
     }
 
     return (
@@ -47,19 +59,19 @@ export default () => {
             <SliderContainer>
                 <Label>1박당 요금</Label>
                 <Range allowCross={false} defaultValue={price} marks={priceMarks} onChange={onPriceChange}
-                    trackStyle={SliderStyle} handleStyle={SliderStyle} />
+                    trackStyle={SliderStyle} handleStyle={SliderStyle} max={1000000} />
             </SliderContainer>
 
             <SliderContainer>
                 <Label>리뷰 점수</Label>
-                <Range step={20} defaultValue={review} marks={reviewMarks} onChange={onReviewChange}
-                    trackStyle={SliderStyle} handleStyle={SliderStyle} />
+                <Range step={1} defaultValue={review} marks={reviewMarks} onChange={onReviewChange}
+                    trackStyle={SliderStyle} handleStyle={SliderStyle} max={10}/>
             </SliderContainer>
 
             <Label>시설 정보</Label>
-            <div><input type="checkbox" /> Free Wifi</div>
-            <div><input type="checkbox" /> Free Parking</div>
-            <div><input type="checkbox" /> Free Airport Pickup</div>
+            <div><input type="checkbox" id={0} onChange={onFreeServicesCheck} /> Free Wifi</div>
+            <div><input type="checkbox" id={1} onChange={onFreeServicesCheck}/> Free Parking</div>
+            <div><input type="checkbox" id={2} onChange={onFreeServicesCheck}/> Free Airport Pickup</div>
         </Container>
 
     )

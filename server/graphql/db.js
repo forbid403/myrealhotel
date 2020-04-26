@@ -252,8 +252,21 @@ export const getPrices = async(id)=>{
    return {id : parseInt(id), price : fetched[id]}
 }
 
-export const getHotels = (minPrice, maxPrice, freeServices, reviewScore)=>{
-   //let REQ_URL = API_URL;
-   return hotelLists;
+export const getHotels = async(minPrice, maxPrice, freeServices, reviewScore)=>{
+   let REQ_URL = API_URL;
+   REQ_URL+= `/hotels?filters=`;
+
+   REQ_URL += `PRICE=${minPrice}:${maxPrice}|`
+
+   if(reviewScore){
+      REQ_URL += `REVIEW-SCORE=${reviewScore}|`;
+   }
+   if(freeServices){
+      REQ_URL += `FREE=`;
+      freeServices.map((s=>REQ_URL+= `${s},`));
+   }
+
+   const fetched = await fetch(REQ_URL).then(res => res.json());
+   return fetched;
 };
 
