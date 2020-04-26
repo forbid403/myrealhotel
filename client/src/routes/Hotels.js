@@ -37,7 +37,7 @@ const Root = styled.div`
     width : 100%;
 `;
 const Container = styled.div`
-    height: 90%;
+    height: 100%;
     width : 100%;
     display : flex;
 `;
