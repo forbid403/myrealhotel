@@ -27,7 +27,7 @@
 ## 트러블슈팅
 - https://forbid403.github.io/react/React-useContext-%EB%B0%B0%EC%97%B4-%EC%98%88%EC%A0%9C/
 - https://forbid403.github.io/til/TIL-%EC%9D%B4%EB%B2%A4%ED%8A%B8-%EB%B2%84%EB%B8%94%EB%A7%81,-%EC%9D%B4%EB%B2%A4%ED%8A%B8-%EC%BA%A1%EC%B3%90%EB%A7%81,-%ED%95%B4%EA%B2%B0-%EB%B0%A9%EB%B2%95/
-
+- https://forbid403.github.io/til/TIL-%EC%8A%A4%EB%A1%9C%ED%8B%80%EA%B3%BC-%EB%94%94%EB%B0%94%EC%9A%B4%EC%8B%B1/
 
 ---
 
