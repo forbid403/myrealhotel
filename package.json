@@ -1,0 +1,22 @@
+{
+  "name": "myrealhotel",
+  "version": "1.0.0",
+  "description": "### Cloning Hotel Website with React, Apollo, Styled Components and GraphQL",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "server": "cd server/ && yarn start",
+    "client": "cd client/ && yarn start",
+    "start": "concurrently \"yarn server\" \"yarn client\""
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/forbid403/myrealhotel.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/forbid403/myrealhotel/issues"
+  },
+  "homepage": "https://github.com/forbid403/myrealhotel#readme"
+}
