@@ -30,6 +30,16 @@
 - https://forbid403.github.io/til/TIL-%EC%8A%A4%EB%A1%9C%ED%8B%80%EA%B3%BC-%EB%94%94%EB%B0%94%EC%9A%B4%EC%8B%B1/
 
 ---
+## 실행 방법
+
+`git clone https://github.com/forbid403/myrealhotel.git`
+
+`cd myrealhotel`
+
+`yarn start`
+
+
+---
 
 ## TODOS
 - [ ] 배포
